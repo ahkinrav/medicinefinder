@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Registration | MedSpot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="panel auth-panel">
+    <h1>Customer Registration</h1>
+    <p>Create your MedSpot account.</p>
+
+    <form id="customer-register-form">
+      <label for="name">Full name</label>
+      <input id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="phone">Mobile number</label>
+      <input id="phone" name="phone" type="tel" required>
+
+      <label for="password">Password</label>
+      <input id="password" name="password"
+             type="password" minlength="8" required>
+
+      <button class="primary" type="submit">Register</button>
+      <p id="message" role="status"></p>
+    </form>
+
+    <p>Already registered? <a href="/login.html">Login</a></p>
+    <p><a href="/">Back to Home</a></p>
+  </main>
+
+  <script>
+    document.getElementById("customer-register-form")
+      .addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const data = Object.fromEntries(new FormData(this));
+        const message = document.getElementById("message");
+
+        try {
+          const response = await fetch("/api/auth/register", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+          message.textContent = result.message ||
+            (response.ok ? "Registration successful" : "Registration failed");
+        } catch (error) {
+          message.textContent = "Server connection failed. Please try again.";
+        }
+      });
+  </script>
+</body>
+</html>

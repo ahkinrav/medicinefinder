@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Login | MedSpot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="panel auth-panel">
+    <h1>Customer Login</h1>
+
+    <form id="customer-login-form">
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="password">Password</label>
+      <input id="password" name="password"
+             type="password" required>
+
+      <button class="primary" type="submit">Login</button>
+      <p id="message" role="status"></p>
+    </form>
+
+    <p>New customer? <a href="/register.html">Register</a></p>
+    <p><a href="/">Back to Home</a></p>
+  </main>
+
+  <script>
+    document.getElementById("customer-login-form")
+      .addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const data = Object.fromEntries(new FormData(this));
+        data.role = "CUSTOMER";
+        const message = document.getElementById("message");
+
+        try {
+          const response = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+          message.textContent = result.message ||
+            (response.ok ? "Login successful" : "Login failed");
+
+          if (response.ok && result.redirectUrl) {
+            window.location.href = result.redirectUrl;
+          }
+        } catch (error) {
+          message.textContent = "Server connection failed. Please try again.";
+        }
+      });
+  </script>
+</body>
+</html>

@@ -159,3 +159,52 @@ button.link {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+.auth-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth-nav a {
+  color: #0d766e;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-nav a:hover {
+  text-decoration: underline;
+}
+
+.auth-panel {
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 28px;
+}
+
+.auth-panel label {
+  display: block;
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+.auth-panel input,
+.auth-panel textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font: inherit;
+}
+
+.auth-panel .primary {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.auth-panel a {
+  color: #0d766e;
+}
