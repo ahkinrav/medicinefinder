@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Find a medicine near you</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="layout">
+    <section class="panel" aria-label="Search">
+      <h1>Find a medicine near you</h1>
+      <p class="lede">Search by brand or ingredient. We list nearby pharmacies that have it in stock, nearest first.</p>
+
+      <form id="search-form" class="search" autocomplete="off">
+        <label for="q">Medicine name</label>
+        <input id="q" name="q" type="search" list="suggestions" placeholder="e.g. paracetamol" required>
+        <datalist id="suggestions"></datalist>
+
+        <div class="row">
+          <div>
+            <label for="radius">Search radius</label>
+            <select id="radius">
+              <option value="2">2 km</option>
+              <option value="5" selected>5 km</option>
+              <option value="10">10 km</option>
+              <option value="25">25 km</option>
+            </select>
+          </div>
+          <button type="submit" class="primary">Search pharmacies</button>
+        </div>
+      </form>
+
+      <div class="location">
+        <span id="location-status" role="status">Finding your location…</span>
+        <button type="button" id="locate" class="link">Use my location</button>
+      </div>
+
+      <div id="summary" class="summary" aria-live="polite"></div>
+      <ol id="results" class="results"></ol>
+    </section>
+
+    <section class="map-wrap" aria-label="Map of pharmacies">
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
