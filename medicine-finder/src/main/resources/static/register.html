@@ -35,27 +35,48 @@
   </main>
 
   <script>
-    document.getElementById("customer-register-form")
-      .addEventListener("submit", async function (event) {
-        event.preventDefault();
+    
+  document.getElementById("customer-register-form")
+    .addEventListener("submit", async function (event) {
+      event.preventDefault();
 
-        const data = Object.fromEntries(new FormData(this));
-        const message = document.getElementById("message");
+      const form = this;
+      const data = Object.fromEntries(new FormData(form));
+      const message = document.getElementById("message");
+      const button = form.querySelector('button[type="submit"]');
 
-        try {
-          const response = await fetch("/api/auth/register", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(data)
-          });
+      message.textContent = "Registering...";
+      button.disabled = true;
 
-          const result = await response.json();
-          message.textContent = result.message ||
-            (response.ok ? "Registration successful" : "Registration failed");
-        } catch (error) {
-          message.textContent = "Server connection failed. Please try again.";
+      try {
+        const response = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        message.textContent = result.message ||
+          (response.ok ? "Registration successful!" : "Registration failed.");
+
+        if (response.ok) {
+          form.reset();
+          setTimeout(() => {
+            window.location.href = result.redirectUrl || "/login.html";
+          }, 1200);
         }
-      });
+      } catch (error) {
+        message.textContent =
+          "Server connection failed. Check that MedSpot is running.";
+      } finally {
+        button.disabled = false;
+      }
+    });
+
+
   </script>
 </body>
 </html>
