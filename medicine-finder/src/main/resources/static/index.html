@@ -3,60 +3,106 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <nav class="auth-nav">
-  <a href="/register.html">Customer Register</a>
-  <a href="/login.html">Customer Login</a>
-  <a href="/shop-owner-register.html">Shop Owner Register</a>
-  <a href="/shop-owner-login.html">Shop Owner Login</a>
-</nav>
-  <title>Find a medicine near you</title>
+
+  <title>MedSpot | Find Medicines Near You</title>
+  <meta name="description" content="Find nearby pharmacies and check medicine availability with MedSpot.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <nav class="auth-nav">
+    <a href="/register.html">Customer Register</a>
+    <a href="/login.html">Customer Login</a>
+    <a href="/shop-owner-register.html">Shop Owner Register</a>
+    <a href="/shop-owner-login.html">Shop Owner Login</a>
+  </nav>
+
   <main class="layout">
-    <section class="panel" aria-label="Search">
-      <h1>Find a medicine near you</h1>
-      <p class="lede">Search by brand or ingredient. We list nearby pharmacies that have it in stock, nearest first.</p>
+
+    <section class="panel" aria-label="Medicine search">
+
+      <h1>Find a Medicine Near You</h1>
+
+      <p class="lede">
+        Search by medicine brand or ingredient and discover nearby pharmacies
+        that have it in stock.
+      </p>
 
       <form id="search-form" class="search" autocomplete="off">
-        <label for="q">Medicine name</label>
-        <input id="q" name="q" type="search" list="suggestions" placeholder="e.g. paracetamol" required>
+
+        <label for="q">Medicine Name</label>
+
+        <input
+          id="q"
+          name="q"
+          type="search"
+          list="suggestions"
+          placeholder="e.g. Paracetamol"
+          required
+        >
+
         <datalist id="suggestions"></datalist>
 
         <div class="row">
+
           <div>
-            <label for="radius">Search radius</label>
-            <select id="radius">
+            <label for="radius">Search Radius</label>
+
+            <select id="radius" name="radius">
               <option value="2">2 km</option>
               <option value="5" selected>5 km</option>
               <option value="10">10 km</option>
               <option value="25">25 km</option>
             </select>
           </div>
-          <button type="submit" class="primary">Search pharmacies</button>
+
+          <button type="submit" class="primary">
+            Search Pharmacies
+          </button>
+
         </div>
       </form>
 
       <div class="location">
-        <span id="location-status" role="status">Finding your location…</span>
-        <button type="button" id="locate" class="link">Use my location</button>
+        <span id="location-status" role="status">
+          Finding your location...
+        </span>
+
+        <button type="button" id="locate" class="link">
+          Use My Location
+        </button>
       </div>
 
-      <div id="summary" class="summary" aria-live="polite"></div>
-      <ol id="results" class="results"></ol>
+      <div
+        id="summary"
+        class="summary"
+        aria-live="polite"
+      ></div>
+
+      <ol
+        id="results"
+        class="results"
+        aria-live="polite"
+      ></ol>
+
     </section>
 
-    <section class="map-wrap" aria-label="Map of pharmacies">
+    <section class="map-wrap" aria-label="Map of nearby pharmacies">
       <div id="map"></div>
     </section>
+
   </main>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="app.js"></script>
+
 </body>
 </html>
