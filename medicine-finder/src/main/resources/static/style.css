@@ -507,3 +507,19 @@ button:hover, button.primary:hover {
     padding: 20px;
   }
 }
+
+.hero-image {
+  width: 100%;
+  max-width: 650px;
+  margin: 24px auto;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(15, 118, 110, 0.15);
+}
+
+.hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
