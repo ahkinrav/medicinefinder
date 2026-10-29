@@ -357,3 +357,153 @@ small,
     transition: none !important;
   }
 }
+
+/* ===== MEDSPOT VISUAL UPGRADE ===== */
+
+body {
+  background: linear-gradient(180deg, #e8f8f5 0%, #f8fbfa 340px, #f8fbfa 100%);
+  color: #173b3a;
+}
+
+/* Navigation bar */
+.auth-nav {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid #d4ebe5;
+  box-shadow: 0 4px 20px rgba(15, 118, 110, 0.06);
+}
+
+/* Main content card */
+.panel {
+  background: #ffffff;
+  border: 1px solid #d8ebe6;
+  border-radius: 22px;
+  box-shadow: 0 14px 38px rgba(15, 76, 70, 0.08);
+}
+
+/* Main heading */
+h1 {
+  color: #0f766e;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+}
+
+h2, h3 {
+  color: #174e49;
+}
+
+/* Description text */
+.lede {
+  color: #647b78;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* Search inputs */
+input, select, textarea {
+  background: #fbfefd;
+  border: 1px solid #cfe4de;
+  border-radius: 12px;
+  min-height: 50px;
+}
+
+input:focus, select:focus, textarea:focus {
+  background: #ffffff;
+  border-color: #0d9488;
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.12);
+}
+
+/* Teal buttons */
+button, button.primary {
+  background: linear-gradient(135deg, #0d9488, #0f766e);
+  border: none;
+  border-radius: 12px;
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 5px 13px rgba(13, 148, 136, 0.16);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover, button.primary:hover {
+  background: linear-gradient(135deg, #0f766e, #115e59);
+  box-shadow: 0 8px 18px rgba(13, 148, 136, 0.24);
+  transform: translateY(-2px);
+}
+
+/* Login links */
+.auth-nav a {
+  border-radius: 11px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.auth-nav a:hover {
+  background: #e6fffa;
+  color: #0f766e;
+  border-color: #99dcd0;
+}
+
+/* Medicine result cards */
+.results {
+  gap: 22px;
+}
+
+.result {
+  background: linear-gradient(180deg, #ffffff, #f7fdfb);
+  border: 1px solid #d9ebe6;
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 8px 22px rgba(21, 59, 56, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.result:hover {
+  transform: translateY(-5px);
+  border-color: #8bd4c6;
+  box-shadow: 0 16px 30px rgba(15, 118, 110, 0.12);
+}
+
+/* Location and status boxes */
+.location, .summary {
+  background: #e8faf5;
+  border: 1px solid #b7e6d9;
+  border-radius: 13px;
+  color: #11665d;
+  padding: 16px 18px;
+}
+
+/* Map container */
+.map-wrap {
+  border: 1px solid #cde5df;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(21, 59, 56, 0.08);
+}
+
+#map {
+  border-radius: 20px;
+}
+
+/* Better spacing */
+.layout {
+  padding-top: 10px;
+}
+
+.panel + .panel {
+  margin-top: 24px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 700px) {
+  .panel {
+    border-radius: 16px;
+    padding: 20px 16px;
+  }
+
+  h1 {
+    letter-spacing: -0.5px;
+  }
+
+  .result {
+    padding: 20px;
+  }
+}
