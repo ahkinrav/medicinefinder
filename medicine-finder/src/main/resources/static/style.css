@@ -1,9 +1,9 @@
 
 :root {
-  --bg: #f3f9f8;
+  --bg: #f1f8f7;
   --surface: #ffffff;
   --ink: #173b3a;
-  --muted: #647b7a;
+  --muted: #657c7a;
   --line: #dce9e6;
   --teal: #0d9488;
   --teal-dark: #0f766e;
@@ -11,8 +11,8 @@
   --coral: #f97360;
   --green: #15803d;
   --amber: #b86e00;
-  --radius: 16px;
-  --shadow: 0 8px 28px rgba(15, 118, 110, 0.08);
+  --radius: 18px;
+  --shadow: 0 10px 32px rgba(15, 118, 110, 0.09);
   --font-head: "Bricolage Grotesque", "Segoe UI", sans-serif;
   --font-body: "Instrument Sans", "Segoe UI", Arial, sans-serif;
 }
@@ -27,7 +27,6 @@
 
 html {
   min-height: 100%;
-  margin: 0;
   scroll-behavior: smooth;
 }
 
@@ -36,11 +35,9 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font: 400 16px/1.6 var(--font-body);
+  font: 400 16px/1.65 var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
-
-/* Typography */
 
 h1,
 h2,
@@ -48,14 +45,14 @@ h3,
 h4 {
   color: var(--ink);
   font-family: var(--font-head);
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
 h1 {
-  margin: 0 0 12px;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 3vw, 2.7rem);
   font-weight: 700;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.045em;
 }
 
 h2 {
@@ -84,39 +81,46 @@ a:hover {
   z-index: 1000;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
-  gap: 12px;
-  padding: 14px 20px;
-  background: var(--surface);
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 22px;
+  background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid var(--line);
-  box-shadow: 0 2px 10px rgba(15, 118, 110, 0.04);
+  box-shadow: 0 3px 16px rgba(23, 59, 58, 0.04);
+  backdrop-filter: blur(12px);
 }
 
 .auth-nav a {
-  padding: 9px 14px;
+  padding: 9px 15px;
   color: var(--teal-dark);
+  font-size: 0.94rem;
   font-weight: 600;
-  border-radius: 9px;
+  border: 1px solid transparent;
+  border-radius: 10px;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .auth-nav a:hover {
   color: var(--teal-dark);
   background: var(--teal-light);
+  border-color: #b7eee4;
 }
 
 /* Main layout */
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(340px, 440px) minmax(0, 1fr);
+  grid-template-columns: minmax(350px, 440px) minmax(0, 1fr);
   min-height: calc(100vh - 65px);
+  gap: 0;
 }
 
 .panel {
+  position: relative;
+  z-index: 2;
   min-width: 0;
-  padding: 28px 24px;
+  padding: 38px 28px;
   overflow-y: auto;
   background: var(--surface);
   border-right: 1px solid var(--line);
@@ -124,16 +128,18 @@ a:hover {
 
 .lede {
   max-width: 46ch;
-  margin: 0 0 26px;
+  margin: 0 0 30px;
   color: var(--muted);
-  line-height: 1.75;
+  font-size: 1.02rem;
+  line-height: 1.8;
 }
 
 /* Forms */
 
 label {
   display: block;
-  margin-bottom: 7px;
+  margin-bottom: 8px;
+  color: var(--ink);
   font-size: 0.92rem;
   font-weight: 600;
 }
@@ -143,14 +149,21 @@ select,
 textarea {
   width: 100%;
   max-width: 100%;
-  min-height: 44px;
-  padding: 12px 14px;
+  min-height: 48px;
+  padding: 12px 15px;
   color: var(--ink);
   background: #fbfefd;
-  border: 1px solid var(--line);
-  border-radius: 10px;
+  border: 1px solid #d5e5e1;
+  border-radius: 12px;
   font: inherit;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #a7d6cd;
 }
 
 input::placeholder,
@@ -162,8 +175,9 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: none;
+  background: #ffffff;
   border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.13);
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.12);
 }
 
 input[type="checkbox"],
@@ -191,8 +205,10 @@ input[type="range"] {
 
 #q {
   width: 100%;
-  min-height: 48px;
-  border-radius: 999px;
+  min-height: 52px;
+  padding: 14px 19px;
+  background: #f8fcfb;
+  border-radius: 14px;
 }
 
 #radius {
@@ -204,12 +220,12 @@ input[type="range"] {
 .row {
   display: flex;
   align-items: flex-end;
-  gap: 12px;
-  margin-top: 16px;
+  gap: 13px;
+  margin-top: 18px;
 }
 
 .row > div {
-  flex: 0 0 110px;
+  flex: 0 0 112px;
   min-width: 0;
 }
 
@@ -224,15 +240,19 @@ button.primary,
 input[type="submit"],
 .btn,
 .button {
-  display: inline-block;
-  padding: 12px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 19px;
   color: #ffffff;
-  background: var(--teal);
+  background: linear-gradient(135deg, var(--teal), var(--teal-dark));
   border: 1px solid var(--teal);
-  border-radius: 10px;
+  border-radius: 12px;
   font: inherit;
   font-weight: 600;
   text-align: center;
+  box-shadow: 0 5px 14px rgba(13, 148, 136, 0.14);
   transition: background 0.2s ease, transform 0.2s ease,
     box-shadow 0.2s ease;
 }
@@ -249,8 +269,14 @@ input[type="submit"]:hover,
   color: #ffffff;
   background: var(--teal-dark);
   border-color: var(--teal-dark);
-  box-shadow: 0 5px 14px rgba(13, 148, 136, 0.15);
-  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.22);
+  transform: translateY(-2px);
+}
+
+button:active,
+.btn:active,
+.button:active {
+  transform: translateY(0);
 }
 
 button:disabled {
@@ -263,13 +289,17 @@ button.link {
   color: var(--teal-dark);
   background: transparent;
   border: 0;
+  box-shadow: none;
   font-weight: 600;
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 button.link:hover {
   color: var(--teal);
   background: transparent;
+  box-shadow: none;
+  transform: none;
 }
 
 :focus-visible {
@@ -285,22 +315,27 @@ button.link:hover {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin: 18px 0 8px;
+  margin: 22px 0 10px;
+  padding: 13px 15px;
   color: var(--muted);
+  background: #f5faf9;
+  border: 1px solid var(--line);
+  border-radius: 12px;
   font-size: 0.9rem;
 }
 
 .summary {
   min-height: 1.5em;
-  margin: 18px 0 12px;
+  margin: 20px 0 14px;
+  color: var(--ink);
   font-weight: 600;
 }
 
-/* Pharmacy search results */
+/* Pharmacy results */
 
 .results {
   display: grid;
-  gap: 12px;
+  gap: 14px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -308,12 +343,12 @@ button.link:hover {
 
 .result {
   width: 100%;
-  padding: 17px;
+  padding: 19px;
   color: var(--ink);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: 0 3px 12px rgba(15, 118, 110, 0.04);
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.045);
   text-align: left;
   transition: border-color 0.2s ease, box-shadow 0.2s ease,
     transform 0.2s ease;
@@ -321,24 +356,25 @@ button.link:hover {
 
 .result:hover,
 .result[aria-current="true"] {
-  border-color: var(--teal);
+  border-color: #8bd6ca;
   box-shadow: var(--shadow);
   transform: translateY(-2px);
 }
 
 .result h2 {
-  margin: 0 0 5px;
-  font-size: 1.12rem;
+  margin: 0 0 7px;
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
 .result .addr {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   color: var(--muted);
   font-size: 0.9rem;
 }
 
 .result .med {
-  margin: 0 0 12px;
+  margin: 0 0 13px;
   font-size: 0.95rem;
 }
 
@@ -355,13 +391,13 @@ button.link:hover {
 }
 
 .capsule b {
-  padding: 4px 12px;
+  padding: 5px 12px;
   color: #ffffff;
   background: var(--teal);
 }
 
 .capsule i {
-  padding: 4px 12px;
+  padding: 5px 12px;
   color: var(--teal-dark);
   background: #e8f7f4;
   font-style: normal;
@@ -383,7 +419,7 @@ button.link:hover {
 }
 
 .badge.closed {
-  color: var(--coral);
+  color: #dc4c42;
 }
 
 /* Result actions */
@@ -392,7 +428,7 @@ button.link:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  margin-top: 12px;
+  margin-top: 14px;
   font-size: 0.9rem;
 }
 
@@ -403,6 +439,7 @@ button.link:hover {
 
 .actions a:hover {
   text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Map */
@@ -430,7 +467,7 @@ button.link:hover {
   border: 3px solid #ffffff;
   border-radius: 13px 13px 13px 3px;
   transform: rotate(-45deg);
-  box-shadow: 0 2px 6px rgba(16, 38, 46, 0.3);
+  box-shadow: 0 3px 8px rgba(16, 38, 46, 0.3);
 }
 
 .pin.active {
@@ -451,17 +488,22 @@ button.link:hover {
 .auth-panel {
   width: calc(100% - 32px);
   max-width: 480px;
-  margin: 40px auto;
-  padding: 28px;
+  margin: 48px auto;
+  padding: 32px;
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 22px;
   box-shadow: var(--shadow);
 }
 
+.auth-panel h1,
+.auth-panel h2 {
+  margin-top: 0;
+}
+
 .auth-panel label {
-  margin-top: 16px;
-  margin-bottom: 6px;
+  margin-top: 17px;
+  margin-bottom: 7px;
 }
 
 .auth-panel input,
@@ -474,7 +516,7 @@ button.link:hover {
 .auth-panel .primary,
 .auth-panel input[type="submit"] {
   width: 100%;
-  margin-top: 20px;
+  margin-top: 22px;
 }
 
 .auth-panel p {
@@ -487,18 +529,20 @@ table {
   width: 100%;
   border-collapse: collapse;
   background: var(--surface);
+  border-radius: 12px;
 }
 
 th,
 td {
-  padding: 13px 15px;
+  padding: 14px 15px;
   border-bottom: 1px solid var(--line);
   text-align: left;
 }
 
 th {
   color: var(--teal-dark);
-  background: var(--teal-light);
+  background: #e9f8f5;
+  font-weight: 700;
 }
 
 tr:last-child td {
@@ -520,7 +564,7 @@ img {
 
   .map-wrap {
     order: -1;
-    height: 300px;
+    height: 340px;
     min-height: 300px;
   }
 
@@ -529,13 +573,13 @@ img {
   }
 
   .panel {
-    padding: 24px 18px;
+    padding: 30px 22px;
     overflow: visible;
     border-right: 0;
   }
 
   .auth-panel {
-    margin: 30px auto;
+    margin: 32px auto;
   }
 }
 
@@ -544,6 +588,10 @@ img {
 @media (max-width: 420px) {
   body {
     font-size: 15px;
+  }
+
+  h1 {
+    font-size: 1.9rem;
   }
 
   .row {
@@ -561,21 +609,25 @@ img {
   }
 
   .auth-nav {
-    gap: 6px;
-    padding: 12px;
+    gap: 5px;
+    padding: 10px;
   }
 
   .auth-nav a {
-    padding: 8px 10px;
-    font-size: 0.9rem;
+    padding: 8px 9px;
+    font-size: 0.83rem;
+  }
+
+  .panel {
+    padding: 24px 16px;
   }
 
   .result {
-    padding: 14px;
+    padding: 15px;
   }
 
   .auth-panel {
-    padding: 22px 18px;
+    padding: 24px 18px;
   }
 
   th,
