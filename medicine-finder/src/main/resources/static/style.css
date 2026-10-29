@@ -648,3 +648,15 @@ img {
     scroll-behavior: auto !important;
   }
 }
+/* TEMPORARY DESIGN TEST */
+body {
+  background: #ffe4e6 !important;
+}
+
+.panel {
+  background: #fff7ed !important;
+}
+
+h1 {
+  color: #7c3aed !important;
+}
