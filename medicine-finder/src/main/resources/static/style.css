@@ -17,21 +17,30 @@
   --font-body: "Instrument Sans", "Segoe UI", Arial, sans-serif;
 }
 
-* {
+/* Reset */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-html,
-body {
+html {
   min-height: 100%;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 body {
+  min-height: 100vh;
+  margin: 0;
   background: var(--bg);
   color: var(--ink);
   font: 400 16px/1.6 var(--font-body);
+  -webkit-font-smoothing: antialiased;
 }
+
+/* Typography */
 
 h1,
 h2,
@@ -42,16 +51,37 @@ h4 {
   line-height: 1.3;
 }
 
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  font-size: 1.25rem;
+}
+
+p {
+  overflow-wrap: anywhere;
+}
+
 a {
   color: var(--teal-dark);
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
   color: var(--teal);
 }
 
+/* Navigation */
+
 .auth-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -76,6 +106,8 @@ a:hover {
   background: var(--teal-light);
 }
 
+/* Main layout */
+
 .layout {
   display: grid;
   grid-template-columns: minmax(340px, 440px) minmax(0, 1fr);
@@ -90,18 +122,14 @@ a:hover {
   border-right: 1px solid var(--line);
 }
 
-h1 {
-  margin: 0 0 12px;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
 .lede {
   max-width: 46ch;
   margin: 0 0 26px;
   color: var(--muted);
+  line-height: 1.75;
 }
+
+/* Forms */
 
 label {
   display: block;
@@ -113,13 +141,21 @@ label {
 input,
 select,
 textarea {
+  width: 100%;
   max-width: 100%;
+  min-height: 44px;
   padding: 12px 14px;
   color: var(--ink);
   background: #fbfefd;
   border: 1px solid var(--line);
   border-radius: 10px;
   font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #8a9c99;
 }
 
 input:focus,
@@ -128,6 +164,19 @@ textarea:focus {
   outline: none;
   border-color: var(--teal);
   box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.13);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: auto;
+  min-height: auto;
+}
+
+input[type="range"] {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  accent-color: var(--teal);
 }
 
 .search {
@@ -142,12 +191,15 @@ textarea:focus {
 
 #q {
   width: 100%;
+  min-height: 48px;
   border-radius: 999px;
 }
 
 #radius {
   width: 100%;
 }
+
+/* Search row */
 
 .row {
   display: flex;
@@ -160,6 +212,8 @@ textarea:focus {
   flex: 0 0 110px;
   min-width: 0;
 }
+
+/* Buttons */
 
 button {
   font: inherit;
@@ -179,7 +233,8 @@ input[type="submit"],
   font: inherit;
   font-weight: 600;
   text-align: center;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 button.primary {
@@ -194,7 +249,13 @@ input[type="submit"]:hover,
   color: #ffffff;
   background: var(--teal-dark);
   border-color: var(--teal-dark);
+  box-shadow: 0 5px 14px rgba(13, 148, 136, 0.15);
   transform: translateY(-1px);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 button.link {
@@ -216,6 +277,8 @@ button.link:hover {
   outline-offset: 3px;
 }
 
+/* Location */
+
 .location {
   display: flex;
   flex-wrap: wrap;
@@ -232,6 +295,8 @@ button.link:hover {
   margin: 18px 0 12px;
   font-weight: 600;
 }
+
+/* Pharmacy search results */
 
 .results {
   display: grid;
@@ -250,13 +315,15 @@ button.link:hover {
   border-radius: var(--radius);
   box-shadow: 0 3px 12px rgba(15, 118, 110, 0.04);
   text-align: left;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .result:hover,
 .result[aria-current="true"] {
   border-color: var(--teal);
   box-shadow: var(--shadow);
+  transform: translateY(-2px);
 }
 
 .result h2 {
@@ -275,9 +342,12 @@ button.link:hover {
   font-size: 0.95rem;
 }
 
+/* Medicine availability */
+
 .capsule {
   display: inline-flex;
   overflow: hidden;
+  max-width: 100%;
   border: 1px solid var(--teal);
   border-radius: 999px;
   font-size: 0.85rem;
@@ -316,6 +386,8 @@ button.link:hover {
   color: var(--coral);
 }
 
+/* Result actions */
+
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -329,6 +401,12 @@ button.link:hover {
   font-weight: 600;
 }
 
+.actions a:hover {
+  text-decoration: underline;
+}
+
+/* Map */
+
 .map-wrap {
   position: relative;
   min-width: 0;
@@ -339,9 +417,11 @@ button.link:hover {
 #map {
   position: absolute;
   inset: 0;
-  min-height: 320px;
   z-index: 1;
+  min-height: 320px;
 }
+
+/* Map markers */
 
 .pin {
   width: 26px;
@@ -365,6 +445,8 @@ button.link:hover {
   border-radius: 50%;
   box-shadow: 0 0 0 6px rgba(13, 148, 136, 0.2);
 }
+
+/* Login and registration */
 
 .auth-panel {
   width: calc(100% - 32px);
@@ -399,6 +481,8 @@ button.link:hover {
   color: var(--muted);
 }
 
+/* Tables and dashboard */
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -417,14 +501,20 @@ th {
   background: var(--teal-light);
 }
 
+tr:last-child td {
+  border-bottom: 0;
+}
+
 img {
   max-width: 100%;
   height: auto;
 }
 
+/* Tablet */
+
 @media (max-width: 800px) {
   .layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     min-height: auto;
   }
 
@@ -443,9 +533,19 @@ img {
     overflow: visible;
     border-right: 0;
   }
+
+  .auth-panel {
+    margin: 30px auto;
+  }
 }
 
+/* Mobile */
+
 @media (max-width: 420px) {
+  body {
+    font-size: 15px;
+  }
+
   .row {
     align-items: stretch;
     flex-direction: column;
@@ -469,7 +569,23 @@ img {
     padding: 8px 10px;
     font-size: 0.9rem;
   }
+
+  .result {
+    padding: 14px;
+  }
+
+  .auth-panel {
+    padding: 22px 18px;
+  }
+
+  th,
+  td {
+    padding: 9px;
+    font-size: 0.88rem;
+  }
 }
+
+/* Accessibility */
 
 @media (prefers-reduced-motion: reduce) {
   *,
